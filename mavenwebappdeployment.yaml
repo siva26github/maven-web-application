@@ -5,7 +5,7 @@ metadata:
   namespace: sivans
 spec:
   revisionHistoryLimit: 10
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: mavenwebapp
