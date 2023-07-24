@@ -31,11 +31,15 @@ pipeline{
         sh "docker push sivane/mavendecslaparaupst:1"
         }
         }
-        stage('deploy'){
+        stage('upstream'){
+         steps{
+         build job: 'maven-freestyle'
+
+      /*  stage('deploy'){
         steps{
         sh "kubectl apply -f mavenwebappdeployment.yaml -n sivans"
         }
-        }
+        }/*
         }
 post {
   success {
