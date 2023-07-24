@@ -3,11 +3,14 @@ pipeline{
     tools{
      maven "maven3.9.3"
     }
-        stages{
+  parameters {
+  choice choices: ['master', 'qa', 'uat'], description: 'choice', name: 'branchname'
+}
+   stages{
         stage('gitclone'){
         steps{
           hai('STARTED')
-         git credentialsId: 'GITHUBCREND', url: 'https://github.com/siva26github/maven-web-application.git'
+         git branch: "${parms.branchname}" credentialsId: 'GITHUBCREND', url: 'https://github.com/siva26github/maven-web-application.git'
         }
         }
         stage('mavenbuild'){
