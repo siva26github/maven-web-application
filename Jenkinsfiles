@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+    tools{
+     maven "maven3.9.3"
+    }
+        stages{
+        stage('gitclone'){
+        steps{
+         git credentialsId: 'GITHUBCREND', url: 'https://github.com/siva26github/maven-web-application.git'
+        }
+        }
+        stage('mavenbuild'){
+        steps{
+        sh "mvn clean package"
+        }
+        }
+        stage('dockerbuild'){
+        steps{
+        sh "docker build -t sivane/mavendecslaparaupst:1 ."
+        }
+        }
+        stage('push image'){
+        steps{
+         withCredentials([string(credentialsId: 'DOCKER_LOGINN', variable: 'DOCKER_LOGINN')]) {
+          sh "docker login -u sivane -p ${DOCKER_LOGINN}"
+ }
+        sh "docker push sivane/mavendecslaparaupst:1"
+        }
+        }
+        stage('deploy'){
+        steps{
+        sh "kubectl apply -f mavenwebappdeployment.yaml -n sivans"
+        }
+        }
+        
+    }
+}
