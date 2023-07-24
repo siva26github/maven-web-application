@@ -10,7 +10,7 @@ pipeline{
         stage('gitclone'){
         steps{
           hai('STARTED')
-         git branch: "${parms.branchname}", credentialsId: 'GITHUBCREND', url: 'https://github.com/siva26github/maven-web-application.git'
+         git branch: "${params.branchname}", credentialsId: 'GITHUBCREND', url: 'https://github.com/siva26github/maven-web-application.git'
         }
         }
         stage('mavenbuild'){
