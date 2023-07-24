@@ -4,8 +4,7 @@ metadata:
   name: mavenwebappdeployment
   namespace: sivans
 spec:
-  revisionHistoryLimit: 10
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: mavenwebapp
