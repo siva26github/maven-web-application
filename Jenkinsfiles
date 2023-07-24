@@ -34,6 +34,8 @@ pipeline{
         stage('upstream'){
          steps{
          build job: 'maven-freestyle'
+        }
+       }
 
       /*  stage('deploy'){
         steps{
